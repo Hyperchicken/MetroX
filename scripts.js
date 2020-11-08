@@ -3207,7 +3207,7 @@ function topHelpBoxPreset(presetName) {
             + "<li>Updated tax tables to reflect the October 2020 changes to tax thresholds.</li>"
             + "</ul></li>"
             + "<li>19/10/2020 - Version 1.24<ul>"
-            + "<li>Separated Job-share from part-time to make it's own paygrade to allow from some job-share specific calculation fixes.</li>"
+            + "<li>Separated Job-share from part-time to make it's own paygrade to allow for some job-share specific calculation fixes.</li>"
             + "<li>Net Income Settings window will now show the full set of settings to avoid scrolling.</li>"
             + "</ul></li>"
             + "<li>15/09/2020 - Version 1.23<ul>"
