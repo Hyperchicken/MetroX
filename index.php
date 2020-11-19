@@ -62,154 +62,163 @@
 
     <div class="row">
         <div class="col-shift">
-            <div class="container grid input-container" id="shift-details">
-                <h3>Data Entry</h3>
+            <div class="input-area-flex container">
+                <div class="input-area-header">
+                    <h3>Data Entry</h3>
+                    <div class="pay-grade-container">
+                        <span>Grade:</span>
+                        <select id="pay-grade" oninput="updateGrade()">
+                            <option value="spot">SPOT</option>
+                            <option value="level1">TD Lvl 1</option>
+                            <option value="trainee">Trainee</option>
+                            <option value="conversion">Conversion</option>
+                            <option value="parttime">Part-Time (SPOT)</option>
+                            <option value="jobshare">Job-Share (SPOT)</option>
+                            <option value="so8">TSO SO-8</option>
+                            <option value="so9">TSO SO-9</option>
+                            <option value="so10">TSO SO-10</option>
+                            <option value="so11">TSO SO-11</option>
+                            <option value="so12">TSO SO-12</option>
+                            <option value="dao">DAO</option>
+                        </select>
+                    </div>
 
-                <div class="pay-grade-container">
-                    <span>Grade:</span>
-                    <select id="pay-grade" oninput="updateGrade()">
-                        <option value="spot">SPOT</option>
-                        <option value="level1">TD Lvl 1</option>
-                        <option value="trainee">Trainee</option>
-                        <option value="conversion">Conversion</option>
-                        <option value="parttime">Part-Time (SPOT)</option>
-                        <option value="jobshare">Job-Share (SPOT)</option>
-                        <option value="so8">TSO SO-8</option>
-                        <option value="so9">TSO SO-9</option>
-                        <option value="so10">TSO SO-10</option>
-                        <option value="so11">TSO SO-11</option>
-                        <option value="so12">TSO SO-12</option>
-                        <option value="dao">DAO</option>
-                    </select>
-                </div>
+                    <div id="payClassWarning" class="grid-1-6 start-hidden">
+                        <p style="font-size: 0.8em; font-family: Verdana, sans-serif; border-style: solid; border-radius: 3px; border-width: 1px; background-color: #0005; padding: 5px;"><i class="fas fa-exclamation-triangle" style="color: yellow;"></i> Calculations for this pay-grade have not been thoroughly tested for accuracy!</p>
+                    </div>
 
-                <div id="payClassWarning" class="grid-1-6 start-hidden">
-                    <p style="font-size: 0.8em; font-family: Verdana, sans-serif; border-style: solid; border-radius: 3px; border-width: 1px; background-color: #0005; padding: 5px;"><i class="fas fa-exclamation-triangle" style="color: yellow;"></i> Calculations for this pay-grade have not been thoroughly tested for accuracy!</p>
+                    <div class="week-commencing">
+                        <span class="calendar-nav-button" onclick="datepickerShiftDays(-14)"><i class="fas fa-angle-double-left fa-fw calendar-nav-icon"></i></span><span class="week-commencing-button"><input type="text" id="date-button" placeholder="Select date" onchange="updateDates()" readonly="readonly"></span><span class="calendar-nav-button" onclick="datepickerShiftDays(14);"><i class="fas fa-angle-double-right fa-fw calendar-nav-icon"></i></span><span class="calendar-nav-button" onclick="toggleDatepicker();"><i class="far fa-calendar-alt fa-fw calendar-nav-icon"></i></span>
+                    </div>
+                    <div id="week-commencing-date">
+                    </div>
+                    
+                    <div class="hr"></div>
                 </div>
+                <div class="grid input-container">
+                    <div class="grid-heading">DAY OF WEEK</div>
+                    <div class="shift-options-heading grid-heading">SHIFT OPTIONS</div>
+                    <div class="sign-on grid-heading">SIGN<br>ON</div>
+                    <div class="sign-off grid-heading">SIGN<br>OFF</div>
+                    <div class="grid-heading">HRS</div>
 
-                <div class="week-commencing">
-					<span class="calendar-nav-button" onclick="datepickerShiftDays(-14)"><i class="fas fa-angle-double-left fa-fw calendar-nav-icon"></i></span><span class="week-commencing-button"><input type="text" id="date-button" placeholder="Select date" onchange="updateDates()" readonly="readonly"></span><span class="calendar-nav-button" onclick="datepickerShiftDays(14);"><i class="fas fa-angle-double-right fa-fw calendar-nav-icon"></i></span><span class="calendar-nav-button" onclick="toggleDatepicker();"><i class="far fa-calendar-alt fa-fw calendar-nav-icon"></i></span>
-                </div>
-                <div id="week-commencing-date">
-                </div>
+                    <div class="day-of-week">Sunday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="sun1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(0)">
+                    <input type="text" inputmode="decimal" id="sun1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(1)">
+                    <div class="shift-hours" id="sun1-hours"></div>
+                    <div class="shift-options-shelf" id="sun1-options">[options buttons]</div>
                 
-                <div class="hr"></div>
+                    <div class="day-of-week">Monday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="mon1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(2)">
+                    <input type="text" inputmode="decimal" id="mon1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(3)">
+                    <div class="shift-hours" id="mon1-hours"></div>
+                    <div class="shift-options-shelf" id="mon1-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Tuesday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="tue1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(4)">
+                    <input type="text" inputmode="decimal" id="tue1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(5)">
+                    <div class="shift-hours" id="tue1-hours"></div>
+                    <div class="shift-options-shelf" id="tue1-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Wednesday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="wed1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(6)">
+                    <input type="text" inputmode="decimal" id="wed1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(7)">
+                    <div class="shift-hours" id="wed1-hours"></div>
+                    <div class="shift-options-shelf" id="wed1-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Thursday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="thu1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(8)">
+                    <input type="text" inputmode="decimal" id="thu1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(9)">
+                    <div class="shift-hours" id="thu1-hours"></div>
+                    <div class="shift-options-shelf" id="thu1-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Friday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="fri1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(10)">
+                    <input type="text" inputmode="decimal" id="fri1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(11)">
+                    <div class="shift-hours" id="fri1-hours"></div>
+                    <div class="shift-options-shelf" id="fri1-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Saturday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="sat1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(12)">
+                    <input type="text" inputmode="decimal" id="sat1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(13)">
+                    <div class="shift-hours" id="sat1-hours"></div>
+                    <div class="shift-options-shelf" id="sat1-options">[options buttons]</div>
 
-                <div class="grid-heading">DAY OF WEEK</div>
-                <div class="shift-options-heading grid-heading">SHIFT OPTIONS</div>
-                <div class="sign-on grid-heading">SIGN<br>ON</div>
-                <div class="sign-off grid-heading">SIGN<br>OFF</div>
-                <div class="grid-heading">HRS</div>
-
-                <div class="day-of-week">Sunday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="sun1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(0)">
-                <input type="text" inputmode="decimal" id="sun1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(1)">
-                <div class="shift-hours" id="sun1-hours"></div>
-                <div class="shift-options-shelf" id="sun1-options">[options buttons]</div>
-            
-                <div class="day-of-week">Monday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="mon1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(2)">
-                <input type="text" inputmode="decimal" id="mon1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(3)">
-                <div class="shift-hours" id="mon1-hours"></div>
-                <div class="shift-options-shelf" id="mon1-options">[options buttons]</div>
-            
-                <div class="day-of-week">Tuesday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="tue1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(4)">
-                <input type="text" inputmode="decimal" id="tue1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(5)">
-                <div class="shift-hours" id="tue1-hours"></div>
-                <div class="shift-options-shelf" id="tue1-options">[options buttons]</div>
-            
-                <div class="day-of-week">Wednesday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="wed1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(6)">
-                <input type="text" inputmode="decimal" id="wed1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(7)">
-                <div class="shift-hours" id="wed1-hours"></div>
-                <div class="shift-options-shelf" id="wed1-options">[options buttons]</div>
-            
-                <div class="day-of-week">Thursday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="thu1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(8)">
-                <input type="text" inputmode="decimal" id="thu1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(9)">
-                <div class="shift-hours" id="thu1-hours"></div>
-                <div class="shift-options-shelf" id="thu1-options">[options buttons]</div>
-            
-                <div class="day-of-week">Friday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="fri1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(10)">
-                <input type="text" inputmode="decimal" id="fri1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(11)">
-                <div class="shift-hours" id="fri1-hours"></div>
-                <div class="shift-options-shelf" id="fri1-options">[options buttons]</div>
-            
-                <div class="day-of-week">Saturday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="sat1-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(12)">
-                <input type="text" inputmode="decimal" id="sat1-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(13)">
-                <div class="shift-hours" id="sat1-hours"></div>
-                <div class="shift-options-shelf" id="sat1-options">[options buttons]</div>
-
-                <div class="hr"></div>
-            
-                <div class="day-of-week">Sunday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="sun2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(14)">
-                <input type="text" inputmode="decimal" id="sun2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(15)">
-                <div class="shift-hours" id="sun2-hours"></div>
-                <div class="shift-options-shelf" id="sun2-options">[options buttons]</div>
-            
-                <div class="day-of-week">Monday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="mon2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(16)">
-                <input type="text" inputmode="decimal" id="mon2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(17)">
-                <div class="shift-hours" id="mon2-hours"></div>
-                <div class="shift-options-shelf" id="mon2-options">[options buttons]</div>
-            
-                <div class="day-of-week">Tuesday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="tue2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(18)">
-                <input type="text" inputmode="decimal" id="tue2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(19)">
-                <div class="shift-hours" id="tue2-hours"></div>
-                <div class="shift-options-shelf" id="tue2-options">[options buttons]</div>
-            
-                <div class="day-of-week">Wednesday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="wed2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(20)">
-                <input type="text" inputmode="decimal" id="wed2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(21)">
-                <div class="shift-hours" id="wed2-hours"></div>
-                <div class="shift-options-shelf" id="wed2-options">[options buttons]</div>
-            
-                <div class="day-of-week">Thursday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="thu2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(22)">
-                <input type="text" inputmode="decimal" id="thu2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(23)">
-                <div class="shift-hours" id="thu2-hours"></div>
-                <div class="shift-options-shelf" id="thu2-options">[options buttons]</div>
-            
-                <div class="day-of-week">Friday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="fri2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(24)">
-                <input type="text" inputmode="decimal" id="fri2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(25)">
-                <div class="shift-hours" id="fri2-hours"></div>
-                <div class="shift-options-shelf" id="fri2-options">[options buttons]</div>
-            
-                <div class="day-of-week">Saturday</div>
-                <div class="shift-options"><a class="button options-button">...</a></div>
-                <input type="text" inputmode="decimal" id="sat2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(26)">
-                <input type="text" inputmode="decimal" id="sat2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(27)">
-                <div class="shift-hours" id="sat2-hours"></div>
-                <div class="shift-options-shelf" id="sat2-options">[options buttons]</div>
-
-                <div class="day-of-week last-sunday">Sunday</div>
-                <div class="last-sunday grid-2-6">
-                    <a id="lastSunPhNo" class="button yes-no-button dual-button-l">No</a>
-                    <a id="lastSunPhYes" class="button yes-no-button dual-button-r">Yes</a>
-                    <p>Public Holiday?</p>
+                    <div class="hr"></div>
                 </div>
+                <div class="grid input-container">
+                    <div class="grid-heading">DAY OF WEEK</div>
+                    <div class="shift-options-heading grid-heading">SHIFT OPTIONS</div>
+                    <div class="sign-on grid-heading">SIGN<br>ON</div>
+                    <div class="sign-off grid-heading">SIGN<br>OFF</div>
+                    <div class="grid-heading">HRS</div>
+                    
+                    <div class="day-of-week">Sunday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="sun2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(14)">
+                    <input type="text" inputmode="decimal" id="sun2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(15)">
+                    <div class="shift-hours" id="sun2-hours"></div>
+                    <div class="shift-options-shelf" id="sun2-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Monday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="mon2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(16)">
+                    <input type="text" inputmode="decimal" id="mon2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(17)">
+                    <div class="shift-hours" id="mon2-hours"></div>
+                    <div class="shift-options-shelf" id="mon2-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Tuesday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="tue2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(18)">
+                    <input type="text" inputmode="decimal" id="tue2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(19)">
+                    <div class="shift-hours" id="tue2-hours"></div>
+                    <div class="shift-options-shelf" id="tue2-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Wednesday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="wed2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(20)">
+                    <input type="text" inputmode="decimal" id="wed2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(21)">
+                    <div class="shift-hours" id="wed2-hours"></div>
+                    <div class="shift-options-shelf" id="wed2-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Thursday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="thu2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(22)">
+                    <input type="text" inputmode="decimal" id="thu2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(23)">
+                    <div class="shift-hours" id="thu2-hours"></div>
+                    <div class="shift-options-shelf" id="thu2-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Friday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="fri2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(24)">
+                    <input type="text" inputmode="decimal" id="fri2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(25)">
+                    <div class="shift-hours" id="fri2-hours"></div>
+                    <div class="shift-options-shelf" id="fri2-options">[options buttons]</div>
+                
+                    <div class="day-of-week">Saturday</div>
+                    <div class="shift-options"><a class="button options-button">...</a></div>
+                    <input type="text" inputmode="decimal" id="sat2-start" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(26)">
+                    <input type="text" inputmode="decimal" id="sat2-end" placeholder="0000" maxlength="4" pattern="([0-1][0-9]|2[0-3])[0-5][0-9]" class="time" oninput="timeChanged(27)">
+                    <div class="shift-hours" id="sat2-hours"></div>
+                    <div class="shift-options-shelf" id="sat2-options">[options buttons]</div>
 
-                <div class="total-hours-text">Total Hours:</div>
-                <div class="shift-hours total-hours"></div>
+                    <div class="day-of-week last-sunday">Sunday</div>
+                    <div class="last-sunday grid-2-6">
+                        <a id="lastSunPhNo" class="button yes-no-button dual-button-l">No</a>
+                        <a id="lastSunPhYes" class="button yes-no-button dual-button-r">Yes</a>
+                        <p>Public Holiday?</p>
+                    </div>
+
+                    <div class="total-hours-text">Total Hours:</div>
+                    <div class="shift-hours total-hours"></div>
+                </div>
             </div>
         </div> 
         
